@@ -17,16 +17,20 @@ public class Main {
     public void move(){
         switch(direction){
             case DOWN:
-                y--;
+                if (direction != Direction.dir.UP)
+                    y--;
                 break;
             case UP:
-                y++;
+                if (direction != Direction.dir.DOWN)
+                    y++;
                 break;
             case RIGTH:
-                x++;
+                if (direction != Direction.dir.LEFT)
+                    x++;
                 break;
             case LEFT:
-                x--;
+                if (direction != Direction.dir.RIGTH)
+                    x--;
                 break;
         }
 
@@ -36,6 +40,8 @@ public class Main {
         if (field.field[x][y].type == Type.type.FRUIT)
             snake.eaten_fruit.add(field.field[x][y]);
 
+
+
         snake.move(x, y, field);
     }
 
@@ -44,6 +50,12 @@ public class Main {
     }
 
     public void eaten_fruit_check(){
-        if (!snake.eaten_fruit.isEmpty() && snake.eaten_fruit.getFirst().type)
+        if (!snake.eaten_fruit.isEmpty()){
+            Cell temp = snake.eaten_fruit.getFirst();
+            if (temp.type == Type.type.VOID) {
+                snake.add_to_tail(temp.x, temp.y, field);
+                snake.eaten_fruit.pop();
+            }
+        }
     }
 }
