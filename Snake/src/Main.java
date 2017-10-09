@@ -62,7 +62,7 @@ public class Main {
     }
 
 
-    public void eaten_fruit_check(){
+    public void eatenFruitCheck(){
         if (!snake.eaten_fruit.isEmpty()){
             Cell temp = snake.eaten_fruit.getFirst();
             if (temp.type == Type.type.VOID) {

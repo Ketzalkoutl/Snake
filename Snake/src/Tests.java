@@ -7,7 +7,7 @@ public class Tests{
         boolean flag = false;
         Field field = new Field();
         Snake snake = new Snake(field);
-        snake.add_to_head(5, 1, field);
+        snake.addToHead(5, 1, field);
 
         if (field.field[5][1].type == Type.type.SNAKE && snake.snake.get(snake.snake.size() - 1).getX() == 5 &&
                 snake.snake.get(snake.snake.size() - 1).getY() == 1)
@@ -21,7 +21,7 @@ public class Tests{
         boolean flag = false;
         Field field = new Field();
         Snake snake = new Snake(field);
-        snake.add_to_tail(1, 2, field);
+        snake.addToTail(1, 2, field);
 
         if (field.field[1][2].type == Type.type.SNAKE && snake.snake.get(0).getX() == 1 &&
                 snake.snake.get(0).getY() == 2)
@@ -35,7 +35,7 @@ public class Tests{
         boolean flag = false;
         Field field = new Field();
         Snake snake = new Snake(field);
-        snake.cut_tail(field);
+        snake.cutTail(field);
 
         int x = snake.snake.get(0).getX();
         int y = snake.snake.get(0).getY();
@@ -109,7 +109,7 @@ public class Tests{
 
         for (int i = 0;i<5;i++) {
             main.move(Direction.dir.RIGTH);
-            main.eaten_fruit_check();
+            main.eatenFruitCheck();
         }
 
         Cell head = main.snake.snake.get(main.snake.snake.size() - 1);

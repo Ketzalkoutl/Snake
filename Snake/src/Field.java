@@ -23,7 +23,7 @@ public class Field {
         return size;
     }
 
-    public void change_cell(int height, int width, Type.type type) {
+    public void changeCell(int height, int width, Type.type type) {
         field[height][width].type = type;
     }
 }

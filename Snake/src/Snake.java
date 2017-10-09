@@ -14,17 +14,17 @@ public class Snake {
 
 
 
-    public void add_to_tail(int x, int y, Field field){
+    public void addToTail(int x, int y, Field field){
         snake.add(0, field.field[x][y]);
         snake.get(0).type = Type.type.SNAKE;
     }
 
-    public void add_to_head(int x, int y, Field field){
+    public void addToHead(int x, int y, Field field){
         snake.add(snake.size(), field.field[x][y]);
         snake.get(snake.size() - 1).type = Type.type.SNAKE;
     }
 
-    public void cut_tail(Field field){
+    public void cutTail(Field field){
         snake.get(0).type = Type.type.VOID;
         snake.remove(0);
     }
