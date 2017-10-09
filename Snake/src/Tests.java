@@ -9,8 +9,9 @@ public class Tests{
         Snake snake = new Snake(field);
         snake.addToHead(5, 1, field);
 
-        if (field.field[5][1].type == Type.type.SNAKE && snake.snake.get(snake.snake.size() - 1).getX() == 5 &&
-                snake.snake.get(snake.snake.size() - 1).getY() == 1)
+        Cell head = snake.snake.get(snake.snake.size() - 1);
+        if (field.field[5][1].type == Type.type.SNAKE && head.getX() == 5 &&
+                head.getY() == 1)
             flag = true;
 
         assert (flag);
@@ -23,8 +24,9 @@ public class Tests{
         Snake snake = new Snake(field);
         snake.addToTail(1, 2, field);
 
-        if (field.field[1][2].type == Type.type.SNAKE && snake.snake.get(0).getX() == 1 &&
-                snake.snake.get(0).getY() == 2)
+        Cell head = snake.snake.get(0);
+        if (field.field[1][2].type == Type.type.SNAKE && head.getX() == 1 &&
+                head.getY() == 2)
             flag = true;
 
         assert (flag);
@@ -37,9 +39,8 @@ public class Tests{
         Snake snake = new Snake(field);
         snake.cutTail(field);
 
-        int x = snake.snake.get(0).getX();
-        int y = snake.snake.get(0).getY();
-        if (x == 2 && y == 1 && field.field[x][y].type == Type.type.SNAKE)
+        Cell head = snake.snake.get(0);
+        if (head.getX() == 2 && head.getY() == 1 && field.field[head.getX()][head.getY()].type == Type.type.SNAKE)
             flag = true;
 
         assert (flag);
