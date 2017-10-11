@@ -1,8 +1,6 @@
-public class Direction {
-    enum dir{
-        UP,
-        RIGTH,
-        DOWN,
-        LEFT
-    }
+public enum Direction {
+    up,
+    right,
+    down,
+    left
 }

@@ -30,7 +30,7 @@ public class Snake {
     }
 
     public void move(int x, int y, Field field){
-        add_to_head(x, y, field);
-        cut_tail(field);
+        addToHead(x, y, field);
+        cutTail(field);
     }
 }

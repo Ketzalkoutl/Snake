@@ -2,7 +2,7 @@ import java.awt.event.*;
 
 public class Main {
 
-    Direction.dir direction = Direction.dir.RIGTH;
+    Direction direction = Direction.right;
     Field field = new Field();
     Snake snake = new Snake(field);
     int x = snake.snake.get(snake.snake.size() - 1).getX();
@@ -16,34 +16,34 @@ public class Main {
         }
     }
 
-    public void move(Direction.dir dir) throws Exception {
+    public void move(Direction dir) throws Exception {
         switch(dir){
-            case DOWN:
-                if (direction != Direction.dir.UP) {
+            case down:
+                if (direction != Direction.up) {
                     y--;
                     direction = dir;
                 }
                 else
                     y++;
                 break;
-            case UP:
-                if (direction != Direction.dir.DOWN) {
+            case up:
+                if (direction != Direction.down) {
                     y++;
                     direction = dir;
                 }
                 else
                     y--;
                 break;
-            case RIGTH:
-                if (direction != Direction.dir.LEFT) {
+            case right:
+                if (direction != Direction.left) {
                     x++;
                     direction = dir;
                 }
                 else
                     x--;
                 break;
-            case LEFT:
-                if (direction != Direction.dir.RIGTH) {
+            case left:
+                if (direction != Direction.right) {
                     x--;
                     direction = dir;
                 }
@@ -66,7 +66,7 @@ public class Main {
         if (!snake.eaten_fruit.isEmpty()){
             Cell temp = snake.eaten_fruit.getFirst();
             if (temp.type == Type.type.VOID) {
-                snake.add_to_tail(temp.getX(), temp.getY(), field);
+                snake.addToTail(temp.getX(), temp.getY(), field);
                 snake.eaten_fruit.pop();
             }
         }
