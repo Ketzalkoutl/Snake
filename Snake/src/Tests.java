@@ -50,7 +50,7 @@ public class Tests{
     public void moveRightTest() throws Exception {
         boolean flag = false;
         Main main = new Main();
-        main.move(Direction.right);
+        main.move(dir.right);
 
         Cell head = main.snake.snake.get(main.snake.snake.size() - 1);
         if (main.field.field[5][1].type == Type.type.SNAKE && head.getX() == 5 &&
@@ -64,7 +64,7 @@ public class Tests{
     public void moveLeftTest() throws Exception {
         boolean flag = false;
         Main main = new Main();
-        main.move(Direction.left);
+        main.move(dir.left);
 
         Cell head = main.snake.snake.get(main.snake.snake.size() - 1);
         if (main.field.field[5][1].type == Type.type.SNAKE && head.getX() == 5 &&
@@ -78,7 +78,7 @@ public class Tests{
     public void moveUpTest() throws Exception {
         boolean flag = false;
         Main main = new Main();
-        main.move(Direction.up);
+        main.move(dir.up);
 
         Cell head = main.snake.snake.get(main.snake.snake.size() - 1);
         if (main.field.field[4][2].type == Type.type.SNAKE && head.getX() == 4 &&
@@ -92,7 +92,7 @@ public class Tests{
     public void moveDownTest() throws Exception {
         boolean flag = false;
         Main main = new Main();
-        main.move(Direction.down);
+        main.move(dir.down);
 
         Cell head = main.snake.snake.get(main.snake.snake.size() - 1);
         if (head.getX() == 4 && head.getY() == 1 &&
@@ -109,7 +109,7 @@ public class Tests{
         main.field.field[5][1].type = Type.type.FRUIT;
 
         for (int i = 0;i<5;i++) {
-            main.move(Direction.right);
+            main.move(dir.right);
             main.eatenFruitCheck();
         }
 

@@ -2,7 +2,7 @@ import java.awt.event.*;
 
 public class Main {
 
-    Direction direction = Direction.right;
+    dir direction = dir.right;
     Field field = new Field();
     Snake snake = new Snake(field);
     int x = snake.snake.get(snake.snake.size() - 1).getX();
@@ -16,10 +16,10 @@ public class Main {
         }
     }
 
-    public void move(Direction dir) throws Exception {
+    public void move(dir dir) throws Exception {
         switch(dir){
             case down:
-                if (direction != Direction.up) {
+                if (direction != dir.up) {
                     y--;
                     direction = dir;
                 }
@@ -27,7 +27,7 @@ public class Main {
                     y++;
                 break;
             case up:
-                if (direction != Direction.down) {
+                if (direction != dir.down) {
                     y++;
                     direction = dir;
                 }
@@ -35,7 +35,7 @@ public class Main {
                     y--;
                 break;
             case right:
-                if (direction != Direction.left) {
+                if (direction != dir.left) {
                     x++;
                     direction = dir;
                 }
@@ -43,7 +43,7 @@ public class Main {
                     x--;
                 break;
             case left:
-                if (direction != Direction.right) {
+                if (direction != dir.right) {
                     x--;
                     direction = dir;
                 }
