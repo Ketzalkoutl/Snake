@@ -17,10 +17,7 @@ public class Point {
         return y;
     }
 
-    public Point add(Point arg1, Point arg2){
-        return new Point(arg1.x + arg2.x, arg1.y + arg2.y);
-    }
-    public Point sub(Point arg1, Point arg2){
-        return new Point(arg2.x - arg1.x, arg2.y - arg1.y);
+    public Point add(Point term){
+        return new Point(this.x + term.x, this.y + term.y);
     }
 }

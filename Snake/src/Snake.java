@@ -3,6 +3,18 @@ public class Snake {
 
     public LinkedList<Point> snake = new LinkedList();
 
+    private dir currentDir;
+
+    public void setCurrentDir(dir direction){
+        Point head = snake.getLast();
+        head.add(direction.getShift());
+        if (head != snake.get(snake.size() - 2));
+            currentDir = direction;
+    }
+
+    public dir getCurrentDir(){
+        return currentDir;
+    }
 
 
     Snake(Field field){
