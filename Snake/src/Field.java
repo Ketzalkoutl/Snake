@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class Field {
 
-    private int size;
+    private int size = 30;
     public int getSize(){
         return size;
     }

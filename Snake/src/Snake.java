@@ -25,8 +25,6 @@ public class Snake {
         }
     }
 
-
-
     public void addToTail(Point point, Field field){
         snake.addFirst(point);
         field.stateCell.put(point, type.snake);
