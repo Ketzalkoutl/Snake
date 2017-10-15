@@ -1,2 +1,2 @@
 # Snake
-Make Snake Great Again!
+Just one little snake

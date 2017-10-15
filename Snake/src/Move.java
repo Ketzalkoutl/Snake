@@ -4,18 +4,27 @@ import java.util.Map;
 
 public class Move{
 
-    public void move(Map<Point, type> field, LinkedList<Point> snake, dir changeDir) throws Exception{
-        Point headCoord = snake.getLast();
+    static boolean eatenFruit;
+    static Point tail;
+
+    public static void move(Field field, Snake snake, dir changeDir) throws Exception{
+        Point headCoord = snake.snake.getLast();
         headCoord.add(changeDir.getShift());
 
-        if (field.containsKey(headCoord) && (field.get(headCoord)).equals(type.wall) &&
-                (field.get(headCoord)).equals(type.snake))
+        if ((field.stateCell.get(headCoord)).equals(type.wall) ||
+                (field.stateCell.get(headCoord)).equals(type.snake))
             throw new Exception("Snake crashed");
 
-        if (field.containsKey(headCoord) && (field.get(headCoord)).equals(type.fruite)) {
-            snake.addLast(headCoord);
-            field.replace(headCoord, type.snake);
+        if (eatenFruit){
+            snake.addToTail(tail, field);
+            eatenFruit = false;
         }
 
+        if ((field.stateCell.get(headCoord)).equals(type.fruite)) {
+            tail = snake.snake.getFirst();
+            eatenFruit = true;
+        }
+
+        snake.move(headCoord, field);
     }
 }
