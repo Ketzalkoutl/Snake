@@ -19,9 +19,7 @@ public class Move{
             fruiteIsEaten = false;
         }
 
-        System.out.println(field.stateCell.containsKey(headCoord));
-
-        if ((field.stateCell.get(headCoord)).equals(type.fruite)) {
+        if (field.stateCell.containsKey(headCoord) && ((field.stateCell.get(headCoord)).equals(type.fruite))) {
             tail = snake.snake.getFirst();
             fruiteIsEaten = true;
         }

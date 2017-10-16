@@ -19,9 +19,9 @@ public class TestsMove {
         Move.move(field, snake, dir.down);
     }
 
-    @Test(expected = Exception.class)
+    @Test
     public void MoveToSnakeTest() throws Exception {
-        Move.move(field, snake, dir.left);
+        Move.move(field, snake, dir.right);
         assertEquals(snake.snake.getFirst().getX(), 2);
         assertEquals(snake.snake.getFirst().getY(), 1);
         assertEquals(snake.snake.getLast().getX(), 5);
