@@ -1,8 +1,5 @@
-public class Type {
-    enum type {
-        VOID,
-        WALL,
-        FRUIT,
-        SNAKE
-    }
+public enum Type {
+    WALL,
+    FRUIT,
+    SNAKE
 }

@@ -1,47 +1,68 @@
 import java.util.*;
+
 public class Snake {
 
-    public LinkedList<Point> snake = new LinkedList();
+    public LinkedList<SnakePart> snake = new LinkedList();
+    private Direction currentDirection;
+    private boolean isFull;
+    public SnakePart snakeTail;
+    private boolean isAlive;
 
-    private dir currentDir;
-
-    public void setCurrentDir(dir direction){
-        Point head = snake.getLast();
-        head.add(direction.getShift());
-        if (head != snake.get(snake.size() - 2));
-            currentDir = direction;
+    public void setCurrentDirection(Direction direction) {
+        if (!direction.isOpposite(currentDirection))
+            currentDirection = direction;
     }
 
-    public dir getCurrentDir(){
-        return currentDir;
+    public boolean getIsAlive(){
+        return this.isAlive;
     }
 
-
-    Snake(Field field){
-        for (int x = 1; x < 5; x++) {
-            Point point =new Point(x, 1);
-            field.stateCell.put(point, type.snake);
-            snake.add(point);
-        }
+    public void setFull(boolean full) {
+        this.isFull = full;
     }
 
-    public void addToTail(Point point, Field field){
-        snake.addFirst(point);
-        field.stateCell.put(point, type.snake);
+    public boolean getIsFull(){
+        return this.isFull;
     }
 
-    public void addToHead(Point point, Field field){
-        snake.addLast(point);
-        field.stateCell.put(point, type.snake);
+    public void killTheSnake(){
+        this.isAlive = false;
     }
 
-    public void cutTail(Field field){
-        field.stateCell.remove(snake.getFirst());
+    public Direction getCurrentDirection() {
+        return currentDirection;
+    }
+
+    public Snake() {
+        for (int x = 1; x < 5; x++)
+            snake.add(new SnakePart(new Point(x, 1)));
+        isFull = false;
+        isAlive = true;
+        currentDirection = Direction.RIGHT;
+    }
+
+    public void addToTail(Point point) {
+        snake.addFirst(new SnakePart(point));
+    }
+
+    public void addToHead(Point point) {
+        snake.addLast(new SnakePart(point));
+    }
+
+    public void cutTail() {
         snake.removeFirst();
     }
 
-    public void move(Point point, Field field){
-        addToHead(point, field);
-        cutTail(field);
+    public void move() {
+        addToHead(snake.getLast().position.add(currentDirection.getShift()));
+        cutTail();
+    }
+
+    public MapObject objectSearch(Point point){
+        for (SnakePart e: snake){
+            if (e.position == point)
+                return e;
+        }
+        return null;
     }
 }

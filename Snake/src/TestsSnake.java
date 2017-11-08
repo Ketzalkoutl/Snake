@@ -1,40 +1,61 @@
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.Before;
+
 import static junit.framework.Assert.assertEquals;
+import java.util.*;
 
 public class TestsSnake{
-    private Field field;
     private Snake snake;
 
     @Before
-    public void init()
-    {
-        field = new Field();
-        snake = new Snake(field);
+    public void initialization() {
+        snake = new Snake();
     }
+
     @Test
-    public void addToTailTest(){
-        Point addedPoint = new Point(1,2);
-        snake.addToTail(addedPoint, field);
-        assertEquals(addedPoint, snake.snake.getFirst());
-        assertEquals(field.stateCell.get(addedPoint), type.snake);
+    public void addToTailTest() {
+        snake.addToTail(new Point(1, 2));
+        assertEquals(new Point(1, 2), snake.snake.getFirst().position);
     }
 
     @Test
     public void addToHeadTest(){
-        Point addedPoint = new Point(5,1);
-        snake.addToHead(addedPoint, field);
-        assertEquals(addedPoint, snake.snake.getLast());
-        assertEquals(field.stateCell.get(addedPoint), type.snake);
+        snake.addToHead(new Point(5, 1));
+        assertEquals(new Point(5, 1), snake.snake.getLast().position);
     }
 
     @Test
-    public void cutToTailTest(){
-        Point delPoint = snake.snake.getFirst();
-        snake.cutTail(field);
-        assertEquals(false, field.stateCell.containsKey(delPoint));
-        assertEquals(false, snake.snake.contains(delPoint));
+    public void cutTailTest() {
+        Point deletedPoint = snake.snake.getFirst().position;
+        snake.cutTail();
+        Assert.assertFalse(snake.snake.contains(new SnakePart(deletedPoint)));
+    }
+    
+    @Test
+    public void moveTest(){
+        ArrayList<MapObject> beforeMoveSnake = new ArrayList<MapObject>(snake.snake);
+        snake.setCurrentDirection(Direction.UP);
+        snake.move();
+        for (int i = snake.snake.size() - 2; i <= 0; i--)
+            Assert.assertEquals(beforeMoveSnake.get(i), snake.snake.get(i + 1));
     }
 
-    }
+   /*@Test
+    public void objectSearchTest() {
+        Point needPoint = new Point(5,1);
+        MapObject point = new MapObject() {
+            @Override
+            public void moveToThisObject(Snake snake) {
+                snake.killTheSnake();
+            }
+        };
+
+        SnakePart snakePart= new SnakePart(needPoint);
+        snakePart.moveToThisObject(snake);
+
+        assertEquals(snakePart , snake.objectSearch(needPoint) );
+    }*/
+
+}
 

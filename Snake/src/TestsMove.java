@@ -1,39 +1,43 @@
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.Before;
+
 import static junit.framework.Assert.assertEquals;
 
 public class TestsMove {
     private Field field;
     private Snake snake;
-    private dir direction;
+    private Direction direction;
 
     @Before
-    public void init() {
+    public void initialization() {
         field = new Field();
-        snake = new Snake(field);
-
-    }
-
-    @Test(expected = Exception.class)
-    public void MoveToWallTest() throws Exception {
-        Move.move(field, snake, dir.down);
+        snake = new Snake();
     }
 
     @Test
-    public void MoveToSnakeTest() throws Exception {
-        Move.move(field, snake, dir.right);
-        assertEquals(snake.snake.getFirst().getX(), 2);
-        assertEquals(snake.snake.getFirst().getY(), 1);
-        assertEquals(snake.snake.getLast().getX(), 5);
-        assertEquals(snake.snake.getLast().getY(), 1);
+    public void moveToWallTest() {
+        snake.setCurrentDirection(Direction.DOWN);
+        Move.move(field, snake);
+        Assert.assertFalse(snake.getIsAlive());
     }
 
     @Test
-    public  void  MoveToFruiteTest() throws Exception{
-        field.stateCell.put(new Point(5,1), type.fruite);
-        Move.move(field,snake,dir.right);
-        Move.move(field,snake,dir.right);
-        assertEquals(5,snake.snake.size());
+    public void moveToSnakeTest() throws Exception {
+        snake.setCurrentDirection(Direction.LEFT);
+        Move.move(field, snake);
+        assertEquals(new Point(2, 1), snake.snake.getFirst().position);
+        assertEquals(new Point(5, 1), snake.snake.getLast().position);
+
+    }
+
+    @Test
+    public void moveToFruitTest() {
+        field.stateCell.put(new Point(5, 1), new Fruit());
+        snake.setCurrentDirection(Direction.RIGHT);
+        Move.move(field, snake);
+        Move.move(field, snake);
+        assertEquals(5, snake.snake.size());
 
     }
 }
